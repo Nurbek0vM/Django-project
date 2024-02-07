@@ -1,20 +1,17 @@
 {% extends 'index.html' %}
 
 {% block content %}
-    <h1>
-        Posts
-    </h1>
 
-    {% for product in products %}
-        <div class="card" style="width: 18rem;">
-            <img src="..." class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">{{ product.title }}</h5>
-                <p class="card-text">{{ product.rate }}</p>
-                <a href="#" class="btn btn-primary">More</a>
-            </div>
-        </div>
-    {% endfor %}
+<h1>Product List</h1>
 
+{% for product in products%}
+  <div class="card" style="width: 18rem;">
+    <img class="{{ product.photo }}" src="..." alt="Card image cap">
+   <div class="card-body">
+     <h5 class="card-title">{{ product.title }} {{ product.rate }}</h5>
+     <p class="card-text">{{ product.created_at }}</p>
+    <a href="{{ product.id }}" class="btn btn-primary">Перейти</a>
+   </div>
+  </div>
+{% endfor %}
 {% endblock %}
-

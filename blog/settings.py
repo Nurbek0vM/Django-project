@@ -1,50 +1,51 @@
 from pathlib import Path
 
-# Base directory of the project
+# Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# Secret key - Django will use this to encrypt and sign things
-SECRET_KEY = 'django-insecure-jps1*!j$q%&w5nki3#o0+)4f96z@1qv2^nsb*c6f)7v3i$y)es'
 
-# Debug mode - True means we're in development
+# Quick-start development settings - unsuitable for production
+# See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
+
+# SECURITY WARNING: keep the secret key used in production secret!
+SECRET_KEY = 'django-insecure-f1@rv92d62zgqf+h*a(xn9e_*pc4#+_-!&jibe@t%kau6co@c-'
+
+# SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-# Allowed hosts - Django will only serve requests from these hosts
 ALLOWED_HOSTS = []
 
+
 # Application definition
+
 INSTALLED_APPS = [
-    # installed apps
-    'django.contrib.admin', # Django's admin site
-    'django.contrib.auth', # Django's authentication framework
-    'django.contrib.contenttypes', # Django's content types framework
-    'django.contrib.sessions', # Django's session framework
-    'django.contrib.messages', # Django's messaging framework (for errors, etc.)
-    'django.contrib.staticfiles', # Django's static file framework
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
 
-    # third-party apps
+    'post',
 ]
-
-# Middleware - code that runs before and after views are called
+#СПЕЦАЛЬНЫЕ КУСКИ КОДА ДЛЯ ТОГО ЧТОБЫ ЗНВТЬ КТО ПОСЕШАЕТ ИЛИ ЖЕ СКОЛЬКО ПОСИТИЛИ
 MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware', # Security middleware
-    'django.contrib.sessions.middleware.SessionMiddleware', # Session middleware
-    'django.middleware.common.CommonMiddleware', # Common middleware
-    'django.middleware.csrf.CsrfViewMiddleware', # CSRF middleware
-    'django.contrib.auth.middleware.AuthenticationMiddleware', # Authentication middleware
-    'django.contrib.messages.middleware.MessageMiddleware', # Message middleware
-    'django.middleware.clickjacking.XFrameOptionsMiddleware', # Clickjacking middleware
+    'django.middleware.security.SecurityMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-# root URL configuration - tells Django where to find the root URL configuration module
 ROOT_URLCONF = 'blog.urls'
 
-# Template configuration - tells Django how to load templates
-TEMPLATES = [
+TEMPLATES = [   # Настройка шаблонов в html
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            BASE_DIR / "templates", # Tells Django to look for templates in the templates/ directory
+            BASE_DIR / "templates",
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -58,46 +59,54 @@ TEMPLATES = [
     },
 ]
 
-# WSGI application - tells Django where your WSGI application is
-WSGI_APPLICATION = 'blog.wsgi.application'
+WSGI_APPLICATION = 'blog.wsgi.application' #Запуск нашего кода
 
 
-# Database - tells Django how to connect to your database
+# Database
+# https://docs.djangoproject.com/en/5.0/ref/settings/#databases
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3', # Tells Django which database engine to use
-        'NAME': BASE_DIR / 'db.sqlite3', # Tells Django the name of your database file
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
 
 # Password validation
-AUTH_PASSWORD_VALIDATORS = [
+# https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
+
+AUTH_PASSWORD_VALIDATORS = [   # Проверка
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator', # Проверка на схожесть ЛОГИНА и ПАРОЛЯ
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator', # Проверка на итнтиальное значение
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator', # Проверка на распространенные пароли
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator', # Проверка на числа в пароле
     },
 ]
 
 
-LANGUAGE_CODE = 'en-us'
+# Internationalization
+# https://docs.djangoproject.com/en/5.0/topics/i18n/
 
-TIME_ZONE = 'Asia/Bishkek'
+LANGUAGE_CODE = 'en-us' # Язык который использует DJANGO
 
-USE_I18N = True
+TIME_ZONE = 'Asia/Bishkek' #  Часовой пояс
 
-USE_TZ = True
+USE_I18N = True # Нужен для перевода
 
+USE_TZ = True #
+
+
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = 'static/'
 
-
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField' #
